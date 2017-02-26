@@ -2,9 +2,9 @@
 
 namespace DataStructureViaCSharp.Arrays
 {
-	internal class Insert : IExample
+	internal class Delete : IExample
 	{
-		public string Name => "ArrayInsert";
+		public string Name => "ArrayDelete";
 
 		public void Run()
 		{
@@ -12,18 +12,16 @@ namespace DataStructureViaCSharp.Arrays
 			Console.WriteLine("Here is the array values");
 			Console.WriteLine(string.Join(",", values));
 
-			var index = CommandLineHelper.ReadNumberValue("Please input a position index where to insert a new number");
+			var index = CommandLineHelper.ReadNumberValue("Please input a position index where to delete a number");
 			index = index - 1;
 			while (index > values.Length - 1 || index < 0)
 			{
 				index = CommandLineHelper.ReadNumberValue("Index out of range, please input a valid index");
 			}
-			
-			var data = CommandLineHelper.ReadNumberValue("Please input a value to insert");
 
-			values = values.Insert(index, data);
+			values = values.Delete(index);
 
-			Console.WriteLine("After insert a new number, here is the new array values");
+			Console.WriteLine($"After delete a number at index {index}, here is the new array values");
 			Console.WriteLine(string.Join(",", values));
 		}
 	}
