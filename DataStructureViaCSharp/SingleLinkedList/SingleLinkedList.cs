@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace DataStructureViaCSharp.LinkedList
+namespace DataStructureViaCSharp.SingleLinkedList
 {
-	public class NodeLinkedList
+	public class SingleLinkedList
 	{
-		public NodeLinkedList(IEnumerable<int> values)
+		public SingleLinkedList(IEnumerable<int> values)
 		{
 			Init(values);
 		}

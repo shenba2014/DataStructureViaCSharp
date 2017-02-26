@@ -1,17 +1,17 @@
 ﻿using System;
-using DataStructureViaCSharp.LinkedList;
+using DataStructureViaCSharp.SingleLinkedList;
 using Xunit;
 
-namespace DataStructureViaCSharp.Tests.LinkedList
+namespace DataStructureViaCSharp.Tests.SingleLinkedList
 {
-	public class NodeLinkedListTests : IDisposable
+	public class SingleLinkedListTests : IDisposable
 	{
 		private readonly int[] _values = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-		private NodeLinkedList _linkedList;
+		private DataStructureViaCSharp.SingleLinkedList.SingleLinkedList _linkedList;
 
-		public NodeLinkedListTests()
+		public SingleLinkedListTests()
 		{
-			_linkedList = new NodeLinkedList(_values);
+			_linkedList = new DataStructureViaCSharp.SingleLinkedList.SingleLinkedList(_values);
 		}
 
 		[Fact]

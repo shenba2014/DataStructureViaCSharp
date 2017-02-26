@@ -1,15 +1,15 @@
 ﻿using System;
 
-namespace DataStructureViaCSharp.LinkedList
+namespace DataStructureViaCSharp.SingleLinkedList
 {
 	internal class Delete : IExample
 	{
-		public string Name => "LinkedListDelete";
+		public string Name => "SingleLinkedListDelete";
 
 		public void Run()
 		{
 			var values = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-			var linkedList = new NodeLinkedList(values);
+			var linkedList = new SingleLinkedList(values);
 			Console.WriteLine("Here is the values");
 			Console.WriteLine(string.Join(",", values));
 

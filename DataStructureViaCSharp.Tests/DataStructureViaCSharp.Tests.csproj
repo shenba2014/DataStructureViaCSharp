@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arrays\ArrayExtensionsTests.cs" />
-    <Compile Include="LinkedList\NodeLinkedListTests.cs" />
+    <Compile Include="SingleLinkedList\SingleLinkedListTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

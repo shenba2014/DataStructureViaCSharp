@@ -48,12 +48,12 @@
     <Compile Include="Arrays\Insert.cs" />
     <Compile Include="CommandLineHelper.cs" />
     <Compile Include="IExample.cs" />
-    <Compile Include="LinkedList\Delete.cs" />
-    <Compile Include="LinkedList\Find.cs" />
-    <Compile Include="LinkedList\HeadNode.cs" />
-    <Compile Include="LinkedList\Insert.cs" />
-    <Compile Include="LinkedList\Node.cs" />
-    <Compile Include="LinkedList\NodeLinkedList.cs" />
+    <Compile Include="SingleLinkedList\Delete.cs" />
+    <Compile Include="SingleLinkedList\Find.cs" />
+    <Compile Include="SingleLinkedList\HeadNode.cs" />
+    <Compile Include="SingleLinkedList\Insert.cs" />
+    <Compile Include="SingleLinkedList\Node.cs" />
+    <Compile Include="SingleLinkedList\SingleLinkedList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

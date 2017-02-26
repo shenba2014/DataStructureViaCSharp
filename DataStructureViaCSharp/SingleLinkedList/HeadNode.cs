@@ -1,4 +1,4 @@
-﻿namespace DataStructureViaCSharp.LinkedList
+﻿namespace DataStructureViaCSharp.SingleLinkedList
 {
 	public class HeadNode : Node
 	{
