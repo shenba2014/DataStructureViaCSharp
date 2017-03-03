@@ -1,7 +1,0 @@
-﻿namespace DataStructureViaCSharp.SingleLinkedList
-{
-	public class HeadNode : Node
-	{
-		public int ListLength { get; set; }
-	}
-}

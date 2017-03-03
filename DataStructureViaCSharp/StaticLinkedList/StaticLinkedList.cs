@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using DataStructureViaCSharp.Common;
 
 namespace DataStructureViaCSharp.StaticLinkedList
 {
 	public class StaticLinkedList
 	{
-		private Item[] _items;
+		private StaticLinkedListNode[] _items;
 
-		public Item Head { get; private set; }
+		public StaticLinkedListNode Head { get; private set; }
 
-		public int Length => Head.Cur - 1;
+		public int Length { get; private set; }
 
 		public StaticLinkedList(IReadOnlyList<int> values)
 		{
@@ -22,7 +23,7 @@ namespace DataStructureViaCSharp.StaticLinkedList
 			if (item == null)
 				return;
 
-			var newItem = new Item {Data = data};
+			var newItem = new StaticLinkedListNode {Data = data};
 
 			// point to the Cur of newItem
 			item.Cur = Head.Cur;
@@ -33,9 +34,32 @@ namespace DataStructureViaCSharp.StaticLinkedList
 			_items[Head.Cur] = newItem;
 			// point to next empty position
 			Head.Cur++;
+			Length++;
 		}
 
-		public Item Find(int index)
+		public void Delete(int index)
+		{
+			var preItem = index == 1 ? _items[_items.Length - 1] : Find(index - 1);
+			if (preItem == null)
+				return;
+			var toDeleteItemIndex = preItem.Cur;
+			preItem.Cur = _items[toDeleteItemIndex].Cur;
+			_items[toDeleteItemIndex] = null;
+			SetFirstNotNullIndex();
+			Length--;
+		}
+
+		private void SetFirstNotNullIndex()
+		{
+			for (int i = 1; i < _items.Length; i++)
+			{
+				if (_items[i] != null) continue;
+				Head.Cur = i;
+				break;
+			}
+		}
+
+		public StaticLinkedListNode Find(int index)
 		{
 			if (index < 0)
 				return null;
@@ -56,7 +80,7 @@ namespace DataStructureViaCSharp.StaticLinkedList
 
 		public int[] ToArray()
 		{
-			var values = new int[Head.Cur - 1];
+			var values = new int[Length];
 			var k = _items.Length - 1;
 			var firstIndex = _items[k].Cur;
 			var item = _items[firstIndex];
@@ -71,16 +95,17 @@ namespace DataStructureViaCSharp.StaticLinkedList
 
 		private void Init(IReadOnlyList<int> values)
 		{
-			_items = new Item[values.Count * 2];
-			Head = new Item {Cur = values.Count + 1};
+			_items = new StaticLinkedListNode[values.Count * 2];
+			Head = new StaticLinkedListNode {Cur = values.Count + 1};
 			_items[0] = Head;
 			for (var i = 1; i <= values.Count; i++)
-				_items[i] = new Item
+				_items[i] = new StaticLinkedListNode
 				{
 					Data = values[i - 1],
 					Cur = i + 1
 				};
-			_items[_items.Length - 1] = new Item {Cur = 1};
+			_items[_items.Length - 1] = new StaticLinkedListNode {Cur = 1};
+			Length = values.Count;
 		}
 	}
 }

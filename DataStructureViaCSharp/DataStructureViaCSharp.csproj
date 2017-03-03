@@ -47,18 +47,19 @@
     <Compile Include="Arrays\Delete.cs" />
     <Compile Include="Arrays\Insert.cs" />
     <Compile Include="CommandLineHelper.cs" />
+    <Compile Include="Common\ILinkedList.cs" />
     <Compile Include="IExample.cs" />
     <Compile Include="SingleLinkedList\Delete.cs" />
     <Compile Include="SingleLinkedList\Find.cs" />
-    <Compile Include="SingleLinkedList\HeadNode.cs" />
     <Compile Include="SingleLinkedList\Insert.cs" />
-    <Compile Include="SingleLinkedList\Node.cs" />
+    <Compile Include="SingleLinkedList\LinkedListNode.cs" />
     <Compile Include="SingleLinkedList\SingleLinkedList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaticLinkedList\Delete.cs" />
     <Compile Include="StaticLinkedList\Find.cs" />
     <Compile Include="StaticLinkedList\Insert.cs" />
-    <Compile Include="StaticLinkedList\Item.cs" />
+    <Compile Include="StaticLinkedList\StaticLinkedListNode.cs" />
     <Compile Include="StaticLinkedList\StaticLinkedList.cs" />
   </ItemGroup>
   <ItemGroup>

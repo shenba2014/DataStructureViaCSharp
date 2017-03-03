@@ -1,4 +1,5 @@
 ﻿using System;
+using DataStructureViaCSharp.Common;
 using DataStructureViaCSharp.SingleLinkedList;
 using Xunit;
 
@@ -18,7 +19,7 @@ namespace DataStructureViaCSharp.Tests.SingleLinkedList
 		public void ShouldMatchArrayValues()
 		{
 			Assert.Equal(10, _linkedList.Length);
-			Node node = _linkedList.Head;
+			LinkedListNode node = _linkedList.Head;
 			var i = 0;
 			while (node.Next != null)
 			{
@@ -31,9 +32,9 @@ namespace DataStructureViaCSharp.Tests.SingleLinkedList
 		[Fact]
 		public void ShouldFindNode()
 		{
-			var node = _linkedList.Find(2);
-			Assert.NotNull(node);
-			Assert.Equal(2, node.Data);
+			var value = _linkedList.Find(2);
+			Assert.NotNull(value);
+			Assert.Equal(2, value);
 		}
 
 		[Fact]
@@ -42,9 +43,9 @@ namespace DataStructureViaCSharp.Tests.SingleLinkedList
 			var index = 3;
 			var data = 101;
 			_linkedList.Insert(index, data);
-			var node = _linkedList.Find(index);
-			Assert.NotNull(node);
-			Assert.Equal(data, node.Data);
+			var value = _linkedList.Find(index);
+			Assert.NotNull(value);
+			Assert.Equal(data, value);
 			Assert.Equal(11, _linkedList.Length);
 		}
 
@@ -53,9 +54,9 @@ namespace DataStructureViaCSharp.Tests.SingleLinkedList
 		{
 			const int data = 101;
 			_linkedList.Append(data);
-			var node = _linkedList.Find(_linkedList.Length);
-			Assert.NotNull(node);
-			Assert.Equal(data, node.Data);
+			var value = _linkedList.Find(_linkedList.Length);
+			Assert.NotNull(value);
+			Assert.Equal(data, value);
 			Assert.Equal(11, _linkedList.Length);
 		}
 
@@ -64,9 +65,9 @@ namespace DataStructureViaCSharp.Tests.SingleLinkedList
 		{
 			var index = 2;
 			_linkedList.Delete(index);
-			var node = _linkedList.Find(index);
-			Assert.NotNull(node);
-			Assert.Equal(3, node.Data);
+			var value = _linkedList.Find(index);
+			Assert.NotNull(value);
+			Assert.Equal(3, value);
 			Assert.Equal(9, _linkedList.Length);
 		}
 

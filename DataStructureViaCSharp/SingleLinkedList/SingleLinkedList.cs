@@ -1,44 +1,31 @@
 ﻿using System.Collections.Generic;
+using DataStructureViaCSharp.Common;
 
 namespace DataStructureViaCSharp.SingleLinkedList
 {
-	public class SingleLinkedList
+	public class SingleLinkedList : ILinkedList
 	{
 		public SingleLinkedList(IEnumerable<int> values)
 		{
 			Init(values);
 		}
 
-		public HeadNode Head { get; private set; }
+		public LinkedListHeadNode Head { get; private set; }
 
 		public int Length => Head.ListLength;
 
-		public Node Find(int index)
+		public int? Find(int index)
 		{
-			if (Head == null || Head.ListLength == 0)
-				return null;
-
-			if (index < 1 || index > Head.ListLength)
-				return null;
-
-			Node node = Head;
-			var count = 0;
-			while (node != null && count < index)
-			{
-				node = node.Next;
-				count++;
-			}
-
-			return node;
+			return FindNode(index)?.Data;
 		}
 
 		public void Insert(int index, int data)
 		{
-			var node = index == 1 ? Head : Find(index - 1);
+			var node = index == 1 ? Head : FindNode(index - 1);
 			if (node == null)
 				return;
 
-			var newNode = new Node
+			var newNode = new LinkedListNode
 			{
 				Data = data,
 				Next = node.Next
@@ -50,14 +37,14 @@ namespace DataStructureViaCSharp.SingleLinkedList
 
 		public void Append(int data)
 		{
-			var node = Find(Length);
-			node.Next = new Node {Data = data};
+			var node = FindNode(Length);
+			node.Next = new LinkedListNode { Data = data};
 			Head.ListLength++;
 		}
 
 		public void Clear()
 		{
-			Node node = Head;
+			LinkedListNode node = Head;
 			while (node != null)
 			{
 				var nexNode = node.Next;
@@ -70,7 +57,7 @@ namespace DataStructureViaCSharp.SingleLinkedList
 
 		public void Delete(int index)
 		{
-			var node = index == 1 ? Head : Find(index - 1);
+			var node = index == 1 ? Head : FindNode(index - 1);
 			if (node == null)
 				return;
 			node.Next = node.Next?.Next;
@@ -92,14 +79,33 @@ namespace DataStructureViaCSharp.SingleLinkedList
 
 		private void Init(IEnumerable<int> values)
 		{
-			Head = new HeadNode();
-			Node node = Head;
+			Head = new LinkedListHeadNode();
+			LinkedListNode node = Head;
 			foreach (var value in values)
 			{
-				node.Next = new HeadNode {Data = value};
+				node.Next = new LinkedListNode { Data = value};
 				node = node.Next;
 				Head.ListLength++;
 			}
+		}
+
+		private LinkedListNode FindNode(int index)
+		{
+			if (Head == null || Head.ListLength == 0)
+				return null;
+
+			if (index < 1 || index > Head.ListLength)
+				return null;
+
+			LinkedListNode node = Head;
+			var count = 0;
+			while (node != null && count < index)
+			{
+				node = node.Next;
+				count++;
+			}
+
+			return node;
 		}
 	}
 }
