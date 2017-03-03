@@ -5,14 +5,14 @@ namespace DataStructureViaCSharp.SingleLinkedList
 {
 	public class SingleLinkedList : ILinkedList
 	{
+		public LinkedListHeadNode Head { get; private set; }
+
+		public int Length => Head.ListLength;
+
 		public SingleLinkedList(IEnumerable<int> values)
 		{
 			Init(values);
 		}
-
-		public LinkedListHeadNode Head { get; private set; }
-
-		public int Length => Head.ListLength;
 
 		public int? Find(int index)
 		{

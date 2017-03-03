@@ -19,8 +19,8 @@ namespace DataStructureViaCSharp.StaticLinkedList
 			var index = CommandLineHelper.ReadNumberValue("Please input a position index to find a number");
 			while (index < 1 || index > linkedList.Length)
 				index = CommandLineHelper.ReadNumberValue("Index out of range, please input a valid index");
-			var item = linkedList.Find(index);
-			Console.WriteLine(item != null ? $"{item.Data} found at postion {index}" : "no number is found");
+			var value = linkedList.Find(index);
+			Console.WriteLine(value != null ? $"{value} found at postion {index}" : "no number is found");
 		}
 	}
 }

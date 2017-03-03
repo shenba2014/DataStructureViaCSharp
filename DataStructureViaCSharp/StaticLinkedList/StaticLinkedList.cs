@@ -4,7 +4,7 @@ using DataStructureViaCSharp.Common;
 
 namespace DataStructureViaCSharp.StaticLinkedList
 {
-	public class StaticLinkedList
+	public class StaticLinkedList : ILinkedList
 	{
 		private StaticLinkedListNode[] _items;
 
@@ -17,9 +17,14 @@ namespace DataStructureViaCSharp.StaticLinkedList
 			Init(values);
 		}
 
+		public int? Find(int index)
+		{
+			return FindNode(index)?.Data;
+		}
+
 		public void Insert(int index, int data)
 		{
-			var item = index == 1 ? _items[1] : Find(index - 1);
+			var item = index == 1 ? _items[1] : FindNode(index - 1);
 			if (item == null)
 				return;
 
@@ -37,9 +42,29 @@ namespace DataStructureViaCSharp.StaticLinkedList
 			Length++;
 		}
 
+		public void Append(int data)
+		{
+			var appendIndex = Head.Cur;
+			var newNode= new StaticLinkedListNode { Data = data };
+			_items[appendIndex] = newNode;
+			SetFirstNotNullIndex();
+			// Cur of new node is Cur of Head
+			newNode.Cur = Head.Cur;
+			Length++;
+		}
+
+		public void Clear()
+		{
+			Head = new StaticLinkedListNode {Cur = 1};
+			_items = new StaticLinkedListNode[10];
+			_items[0] = Head;
+			_items[_items.Length - 1] = new StaticLinkedListNode {Cur = 0};
+			Length = 0;
+		}
+
 		public void Delete(int index)
 		{
-			var preItem = index == 1 ? _items[_items.Length - 1] : Find(index - 1);
+			var preItem = index == 1 ? _items[_items.Length - 1] : FindNode(index - 1);
 			if (preItem == null)
 				return;
 			var toDeleteItemIndex = preItem.Cur;
@@ -47,35 +72,6 @@ namespace DataStructureViaCSharp.StaticLinkedList
 			_items[toDeleteItemIndex] = null;
 			SetFirstNotNullIndex();
 			Length--;
-		}
-
-		private void SetFirstNotNullIndex()
-		{
-			for (int i = 1; i < _items.Length; i++)
-			{
-				if (_items[i] != null) continue;
-				Head.Cur = i;
-				break;
-			}
-		}
-
-		public StaticLinkedListNode Find(int index)
-		{
-			if (index < 0)
-				return null;
-			if (index > _items.Length - 1)
-				return null;
-
-			var k = _items.Length - 1;
-			var i = 0;
-			while (i < index)
-			{
-				var nextItemIndex = _items[k].Cur;
-				k = nextItemIndex;
-				i++;
-			}
-
-			return _items[k];
 		}
 
 		public int[] ToArray()
@@ -106,6 +102,35 @@ namespace DataStructureViaCSharp.StaticLinkedList
 				};
 			_items[_items.Length - 1] = new StaticLinkedListNode {Cur = 1};
 			Length = values.Count;
+		}
+
+		private StaticLinkedListNode FindNode(int index)
+		{
+			if (index < 0)
+				return null;
+			if (index > _items.Length - 1)
+				return null;
+
+			var k = _items.Length - 1;
+			var i = 0;
+			while (i < index)
+			{
+				var nextItemIndex = _items[k].Cur;
+				k = nextItemIndex;
+				i++;
+			}
+
+			return _items[k];
+		}
+
+		private void SetFirstNotNullIndex()
+		{
+			for (int i = 1; i < _items.Length; i++)
+			{
+				if (_items[i] != null) continue;
+				Head.Cur = i;
+				break;
+			}
 		}
 	}
 }
