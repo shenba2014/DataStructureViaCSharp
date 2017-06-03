@@ -46,6 +46,10 @@
     <Compile Include="Arrays\ArrayExtensions.cs" />
     <Compile Include="Arrays\Delete.cs" />
     <Compile Include="Arrays\Insert.cs" />
+    <Compile Include="CharacterString\IStringFinder.cs" />
+    <Compile Include="CharacterString\KmpStringFinder.cs" />
+    <Compile Include="CharacterString\NaiveStringFinder.cs" />
+    <Compile Include="CharacterString\SubstringMethodStringFinder.cs" />
     <Compile Include="CommandLineHelper.cs" />
     <Compile Include="Common\ILinkedList.cs" />
     <Compile Include="IExample.cs" />
@@ -65,6 +69,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,5 +1,4 @@
 ﻿using System;
-using DataStructureViaCSharp.Common;
 using DataStructureViaCSharp.SingleLinkedList;
 using Xunit;
 
