@@ -10,6 +10,11 @@ namespace DataStructureViaCSharp.StaticLinkedList
 
 		public StaticLinkedListNode Head { get; private set; }
 
+		public void InsertToHead(int value)
+		{
+			throw new NotImplementedException();
+		}
+
 		public int Length { get; private set; }
 
 		public StaticLinkedList(IReadOnlyList<int> values)
@@ -17,9 +22,14 @@ namespace DataStructureViaCSharp.StaticLinkedList
 			Init(values);
 		}
 
-		public int? Find(int index)
+		public int? FindValueByIndex(int index)
 		{
 			return FindNode(index)?.Data;
+		}
+
+		public bool DeleteByValue(int value)
+		{
+			throw new NotImplementedException();
 		}
 
 		public void Insert(int index, int data)
@@ -62,7 +72,7 @@ namespace DataStructureViaCSharp.StaticLinkedList
 			Length = 0;
 		}
 
-		public void Delete(int index)
+		public void DeleteByIndex(int index)
 		{
 			var preItem = index == 1 ? _items[_items.Length - 1] : FindNode(index - 1);
 			if (preItem == null)

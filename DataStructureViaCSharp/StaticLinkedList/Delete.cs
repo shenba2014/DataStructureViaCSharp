@@ -17,7 +17,7 @@ namespace DataStructureViaCSharp.StaticLinkedList
 			while (index < 1 || index > linkedList.Length)
 				index = CommandLineHelper.ReadNumberValue("Index out of range, please input a valid index");
 
-			linkedList.Delete(index);
+			linkedList.DeleteByIndex(index);
 
 			Console.WriteLine($"After delete a number at index {index}, here is the new values");
 			Console.WriteLine(string.Join(",", linkedList.ToArray()));

@@ -57,6 +57,7 @@
     <Compile Include="SingleLinkedList\Find.cs" />
     <Compile Include="SingleLinkedList\Insert.cs" />
     <Compile Include="SingleLinkedList\LinkedListNode.cs" />
+    <Compile Include="SingleLinkedList\LruCache.cs" />
     <Compile Include="SingleLinkedList\SingleLinkedList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

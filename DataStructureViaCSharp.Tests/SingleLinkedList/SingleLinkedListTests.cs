@@ -31,7 +31,7 @@ namespace DataStructureViaCSharp.Tests.SingleLinkedList
 		[Fact]
 		public void ShouldFindNode()
 		{
-			var value = _linkedList.Find(2);
+			var value = _linkedList.FindValueByIndex(2);
 			Assert.NotNull(value);
 			Assert.Equal(2, value);
 		}
@@ -42,7 +42,7 @@ namespace DataStructureViaCSharp.Tests.SingleLinkedList
 			var index = 3;
 			var data = 101;
 			_linkedList.Insert(index, data);
-			var value = _linkedList.Find(index);
+			var value = _linkedList.FindValueByIndex(index);
 			Assert.NotNull(value);
 			Assert.Equal(data, value);
 			Assert.Equal(11, _linkedList.Length);
@@ -53,7 +53,7 @@ namespace DataStructureViaCSharp.Tests.SingleLinkedList
 		{
 			const int data = 101;
 			_linkedList.Append(data);
-			var value = _linkedList.Find(_linkedList.Length);
+			var value = _linkedList.FindValueByIndex(_linkedList.Length);
 			Assert.NotNull(value);
 			Assert.Equal(data, value);
 			Assert.Equal(11, _linkedList.Length);
@@ -63,8 +63,8 @@ namespace DataStructureViaCSharp.Tests.SingleLinkedList
 		public void ShouldDeleteNode()
 		{
 			var index = 2;
-			_linkedList.Delete(index);
-			var value = _linkedList.Find(index);
+			_linkedList.DeleteByIndex(index);
+			var value = _linkedList.FindValueByIndex(index);
 			Assert.NotNull(value);
 			Assert.Equal(3, value);
 			Assert.Equal(9, _linkedList.Length);

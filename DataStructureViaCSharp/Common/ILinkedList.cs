@@ -1,18 +1,24 @@
-﻿namespace DataStructureViaCSharp.Common
+﻿using DataStructureViaCSharp.SingleLinkedList;
+
+namespace DataStructureViaCSharp.Common
 {
 	public interface ILinkedList
 	{
+		void InsertToHead(int value);
+
 		int Length { get; }
 
-		int? Find(int index);
+		int? FindValueByIndex(int index);
 
-		void Insert(int index, int data);
+		bool DeleteByValue(int value);
 
-		void Append(int data);
+		void Insert(int index, int value);
+
+		void Append(int value);
 
 		void Clear();
 
-		void Delete(int index);
+		void DeleteByIndex(int index);
 
 		int[] ToArray();
 	}

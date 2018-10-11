@@ -9,14 +9,42 @@ namespace DataStructureViaCSharp.SingleLinkedList
 
 		public int Length => Head.ListLength;
 
+		public SingleLinkedList()
+		{
+			Head = new LinkedListHeadNode();
+		}
+
 		public SingleLinkedList(IEnumerable<int> values)
 		{
 			Init(values);
 		}
 
-		public int? Find(int index)
+		public void InsertToHead(int value)
+		{
+			Insert(1, value);
+		}
+
+		public int? FindValueByIndex(int index)
 		{
 			return FindNode(index)?.Data;
+		}
+
+		public bool DeleteByValue(int value)
+		{
+			LinkedListNode node = Head;
+			while (node?.Next != null && node.Next.Data != value)
+			{
+				node = node.Next;
+			}
+
+			if (node != null && node.Next?.Data == value)
+			{
+				node.Next = node.Next?.Next;
+				Head.ListLength--;
+				return true;
+			}
+
+			return false;
 		}
 
 		public void Insert(int index, int data)
@@ -55,7 +83,7 @@ namespace DataStructureViaCSharp.SingleLinkedList
 			Head.ListLength = 0;
 		}
 
-		public void Delete(int index)
+		public void DeleteByIndex(int index)
 		{
 			var node = index == 1 ? Head : FindNode(index - 1);
 			if (node == null)
