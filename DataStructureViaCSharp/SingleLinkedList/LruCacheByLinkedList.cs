@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace DataStructureViaCSharp.SingleLinkedList
 {
-	public class LruCache
+	public class LruCacheByLinkedList
 	{
 		private readonly SingleLinkedList _linkedList = new SingleLinkedList();
 
 		private readonly int _maxCacheCount;
 
-		public LruCache(int maxCacheCount)
+		public LruCacheByLinkedList(int maxCacheCount)
 		{
 			_maxCacheCount = maxCacheCount;
 		}

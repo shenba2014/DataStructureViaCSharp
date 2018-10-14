@@ -57,8 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arrays\ArrayExtensionsTests.cs" />
+    <Compile Include="Arrays\LruCacheByArrayTest.cs" />
     <Compile Include="CharacterString\StringFinderTests.cs" />
-    <Compile Include="SingleLinkedList\LruCacheTest.cs" />
+    <Compile Include="SingleLinkedList\LruCacheByLinkedListTest.cs" />
     <Compile Include="SingleLinkedList\SingleLinkedListTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticLinkedList\StaticLinkedListTests.cs" />

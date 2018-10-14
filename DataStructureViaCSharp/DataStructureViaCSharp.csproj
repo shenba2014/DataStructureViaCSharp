@@ -46,6 +46,7 @@
     <Compile Include="Arrays\ArrayExtensions.cs" />
     <Compile Include="Arrays\Delete.cs" />
     <Compile Include="Arrays\Insert.cs" />
+    <Compile Include="Arrays\LruCacheByArray.cs" />
     <Compile Include="CharacterString\IStringFinder.cs" />
     <Compile Include="CharacterString\KmpStringFinder.cs" />
     <Compile Include="CharacterString\NaiveStringFinder.cs" />
@@ -57,7 +58,7 @@
     <Compile Include="SingleLinkedList\Find.cs" />
     <Compile Include="SingleLinkedList\Insert.cs" />
     <Compile Include="SingleLinkedList\LinkedListNode.cs" />
-    <Compile Include="SingleLinkedList\LruCache.cs" />
+    <Compile Include="SingleLinkedList\LruCacheByLinkedList.cs" />
     <Compile Include="SingleLinkedList\SingleLinkedList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

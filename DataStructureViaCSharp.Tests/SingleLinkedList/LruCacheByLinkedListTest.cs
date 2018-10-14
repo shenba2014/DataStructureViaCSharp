@@ -8,12 +8,12 @@ using Xunit;
 
 namespace DataStructureViaCSharp.Tests.SingleLinkedList
 {
-	public class LruCacheTest
+	public class LruCacheByLinkedListTest
 	{
 		[Fact]
 		public void ShouldAddElementToHead()
 		{
-			var lruCache = new LruCache(10);
+			var lruCache = new LruCacheByLinkedList(10);
 			lruCache.Add(10);
 			lruCache.Add(11);
 
@@ -24,7 +24,7 @@ namespace DataStructureViaCSharp.Tests.SingleLinkedList
 		[Fact]
 		public void ShouldRemoveElementAtEndWhenCacheIsFull()
 		{
-			var lruCache = new LruCache(3);
+			var lruCache = new LruCacheByLinkedList(3);
 			lruCache.Add(10);
 			lruCache.Add(11);
 			lruCache.Add(19);
@@ -39,7 +39,7 @@ namespace DataStructureViaCSharp.Tests.SingleLinkedList
 		[Fact]
 		public void ShouldAddElementToHeadAfterAccessingIt()
 		{
-			var lruCache = new LruCache(4);
+			var lruCache = new LruCacheByLinkedList(4);
 			lruCache.Add(10);
 			lruCache.Add(11);
 			lruCache.Add(19);

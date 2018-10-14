@@ -41,6 +41,19 @@ namespace DataStructureViaCSharp.SingleLinkedList
 
 			if (node != null && node.Next?.Data == value)
 			{
+				var startIndex = node.Next.Index;
+				if (startIndex == Length)
+				{
+					_indexNodeDictionary.Remove(startIndex);
+				}
+				else
+				{
+					for (var i = startIndex; i <= Length - 1; i++)
+					{
+						_indexNodeDictionary[i] = _indexNodeDictionary[i + 1];
+					}
+				}
+
 				node.Next = node.Next?.Next;
 				Head.ListLength--;
 				return true;
@@ -58,6 +71,7 @@ namespace DataStructureViaCSharp.SingleLinkedList
 			for (int i = Length + 1; i > index; i--)
 			{
 				_indexNodeDictionary[i] = _indexNodeDictionary[i - 1];
+				_indexNodeDictionary[i].Index = i;
 			}
 
 			var newNode = new LinkedListNode

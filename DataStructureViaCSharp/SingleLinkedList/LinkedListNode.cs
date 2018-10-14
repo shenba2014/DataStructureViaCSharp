@@ -13,6 +13,11 @@ namespace DataStructureViaCSharp.SingleLinkedList
 		public LinkedListNode Next { get; set; }
 
 		public int Index { get; set; }
+
+		public override string ToString()
+		{
+			return Data.ToString();
+		}
 	}
 
 	public class LinkedListHeadNode : LinkedListNode
