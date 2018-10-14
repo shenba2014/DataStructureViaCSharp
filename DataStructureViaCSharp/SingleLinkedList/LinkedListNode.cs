@@ -11,6 +11,8 @@ namespace DataStructureViaCSharp.SingleLinkedList
 		public int Data { get; set; }
 
 		public LinkedListNode Next { get; set; }
+
+		public int Index { get; set; }
 	}
 
 	public class LinkedListHeadNode : LinkedListNode

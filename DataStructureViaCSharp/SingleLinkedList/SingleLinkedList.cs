@@ -5,6 +5,8 @@ namespace DataStructureViaCSharp.SingleLinkedList
 {
 	public class SingleLinkedList : ILinkedList
 	{
+		private readonly Dictionary<int, LinkedListNode> _indexNodeDictionary = new Dictionary<int, LinkedListNode>();
+
 		public LinkedListHeadNode Head { get; private set; }
 
 		public int Length => Head.ListLength;
@@ -53,12 +55,19 @@ namespace DataStructureViaCSharp.SingleLinkedList
 			if (node == null)
 				return;
 
+			for (int i = Length + 1; i > index; i--)
+			{
+				_indexNodeDictionary[i] = _indexNodeDictionary[i - 1];
+			}
+
 			var newNode = new LinkedListNode
 			{
 				Data = data,
 				Next = node.Next
 			};
 			node.Next = newNode;
+			newNode.Index = index;
+			_indexNodeDictionary[index] = newNode;
 
 			Head.ListLength++;
 		}
@@ -66,8 +75,7 @@ namespace DataStructureViaCSharp.SingleLinkedList
 		public void Append(int data)
 		{
 			var node = FindNode(Length);
-			node.Next = new LinkedListNode { Data = data};
-			Head.ListLength++;
+			AddNode(data, node);
 		}
 
 		public void Clear()
@@ -86,8 +94,22 @@ namespace DataStructureViaCSharp.SingleLinkedList
 		public void DeleteByIndex(int index)
 		{
 			var node = index == 1 ? Head : FindNode(index - 1);
-			if (node == null)
+			if (node == null || node.Next == null)
 				return;
+
+			var startIndex = node.Next.Index ;
+			if (startIndex == Length)
+			{
+				_indexNodeDictionary.Remove(startIndex);
+			}
+			else
+			{
+				for (var i = startIndex; i <= Length - 1; i++)
+				{
+					_indexNodeDictionary[i] = _indexNodeDictionary[i + 1];
+				}
+			}
+			
 			node.Next = node.Next?.Next;
 			Head.ListLength--;
 		}
@@ -111,9 +133,8 @@ namespace DataStructureViaCSharp.SingleLinkedList
 			LinkedListNode node = Head;
 			foreach (var value in values)
 			{
-				node.Next = new LinkedListNode { Data = value};
+				AddNode(value, node);
 				node = node.Next;
-				Head.ListLength++;
 			}
 		}
 
@@ -125,15 +146,15 @@ namespace DataStructureViaCSharp.SingleLinkedList
 			if (index < 1 || index > Head.ListLength)
 				return null;
 
-			LinkedListNode node = Head;
-			var count = 0;
-			while (node != null && count < index)
-			{
-				node = node.Next;
-				count++;
-			}
+			return _indexNodeDictionary[index];
+		}
 
-			return node;
+		private void AddNode(int data, LinkedListNode previousNode)
+		{
+			previousNode.Next = new LinkedListNode { Data = data };
+			var newNode = previousNode.Next;
+			newNode.Index = ++Head.ListLength;
+			_indexNodeDictionary[newNode.Index] = newNode;
 		}
 	}
 }
