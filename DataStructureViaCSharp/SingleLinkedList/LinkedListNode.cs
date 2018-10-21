@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace DataStructureViaCSharp.SingleLinkedList
 {
-	public class LinkedListNode
+	public class LinkedListNode<TData>
 	{
-		public int Data { get; set; }
+		public TData Data { get; set; }
 
-		public LinkedListNode Next { get; set; }
+		public LinkedListNode<TData> Next { get; set; }
 
 		public int Index { get; set; }
 
@@ -20,7 +20,7 @@ namespace DataStructureViaCSharp.SingleLinkedList
 		}
 	}
 
-	public class LinkedListHeadNode : LinkedListNode
+	public class LinkedListHeadNode<TData> : LinkedListNode<TData>
 	{
 		public int ListLength { get; set; }
 	}

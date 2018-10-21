@@ -9,13 +9,13 @@ namespace DataStructureViaCSharp.SingleLinkedList
 		public void Run()
 		{
 			var values = new[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-			var linkedList = new SingleLinkedList(values);
+			var linkedList = new SingleLinkedList<int>(values);
 			Console.WriteLine("Here is the values in linked list");
 			Console.WriteLine(string.Join(",", values));
 			var index = CommandLineHelper.ReadNumberValue("Please input a position index to find a number");
 			while (index < 1 || index > linkedList.Length)
 				index = CommandLineHelper.ReadNumberValue("Index out of range, please input a valid index");
-			var value = linkedList.FindValueByIndex(index);
+			var value = linkedList.FindNodeByIndex(index)?.Data;
 			Console.WriteLine(value != null ? $"{value} found at postion {index}" : "no number is found");
 		}
 	}

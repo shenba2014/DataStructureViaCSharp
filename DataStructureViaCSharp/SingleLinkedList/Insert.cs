@@ -9,7 +9,7 @@ namespace DataStructureViaCSharp.SingleLinkedList
 		public void Run()
 		{
 			var values = new[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-			var linkedList = new SingleLinkedList(values);
+			var linkedList = new SingleLinkedList<int>(values);
 			Console.WriteLine("Here is the values");
 			Console.WriteLine(string.Join(",", values));
 

@@ -3,43 +3,43 @@ using DataStructureViaCSharp.Common;
 
 namespace DataStructureViaCSharp.SingleLinkedList
 {
-	public class SingleLinkedList : ILinkedList
+	public class SingleLinkedList<TData> : ILinkedList<TData>
 	{
-		private readonly Dictionary<int, LinkedListNode> _indexNodeDictionary = new Dictionary<int, LinkedListNode>();
+		private readonly Dictionary<int, LinkedListNode<TData>> _indexNodeDictionary = new Dictionary<int, LinkedListNode<TData>>();
 
-		public LinkedListHeadNode Head { get; private set; }
+		public LinkedListHeadNode<TData> Head { get; private set; }
 
 		public int Length => Head.ListLength;
 
 		public SingleLinkedList()
 		{
-			Head = new LinkedListHeadNode();
+			Head = new LinkedListHeadNode<TData>();
 		}
 
-		public SingleLinkedList(IEnumerable<int> values)
+		public SingleLinkedList(IEnumerable<TData> values)
 		{
 			Init(values);
 		}
 
-		public void InsertToHead(int value)
+		public void InsertToHead(TData value)
 		{
 			Insert(1, value);
 		}
 
-		public int? FindValueByIndex(int index)
+		public LinkedListNode<TData> FindNodeByIndex(int index)
 		{
-			return FindNode(index)?.Data;
+			return FindNode(index);
 		}
 
-		public bool DeleteByValue(int value)
+		public bool DeleteByValue(TData value)
 		{
-			LinkedListNode node = Head;
-			while (node?.Next != null && node.Next.Data != value)
+			LinkedListNode<TData> node = Head;
+			while (node?.Next != null && !node.Next.Data.Equals(value))
 			{
 				node = node.Next;
 			}
 
-			if (node != null && node.Next?.Data == value)
+			if (node != null && node.Next.Data.Equals(value))
 			{
 				var startIndex = node.Next.Index;
 				if (startIndex == Length)
@@ -62,7 +62,7 @@ namespace DataStructureViaCSharp.SingleLinkedList
 			return false;
 		}
 
-		public void Insert(int index, int data)
+		public void Insert(int index, TData data)
 		{
 			var node = index == 1 ? Head : FindNode(index - 1);
 			if (node == null)
@@ -74,7 +74,7 @@ namespace DataStructureViaCSharp.SingleLinkedList
 				_indexNodeDictionary[i].Index = i;
 			}
 
-			var newNode = new LinkedListNode
+			var newNode = new LinkedListNode<TData>
 			{
 				Data = data,
 				Next = node.Next
@@ -86,7 +86,7 @@ namespace DataStructureViaCSharp.SingleLinkedList
 			Head.ListLength++;
 		}
 
-		public void Append(int data)
+		public void Append(TData data)
 		{
 			var node = FindNode(Length);
 			AddNode(data, node);
@@ -94,12 +94,12 @@ namespace DataStructureViaCSharp.SingleLinkedList
 
 		public void Clear()
 		{
-			LinkedListNode node = Head;
+			LinkedListNode<TData> node = Head;
 			while (node != null)
 			{
-				var nexNode = node.Next;
-				node.Data = 0;
-				node = nexNode;
+				var nextNode = node.Next;
+				node.Data = default(TData);
+				node = nextNode;
 			}
 			Head.Next = null;
 			Head.ListLength = 0;
@@ -128,9 +128,9 @@ namespace DataStructureViaCSharp.SingleLinkedList
 			Head.ListLength--;
 		}
 
-		public int[] ToArray()
+		public TData[] ToArray()
 		{
-			var values = new int[Length];
+			var values = new TData[Length];
 			var node = Head.Next;
 			var i = 0;
 			while (node != null)
@@ -141,10 +141,10 @@ namespace DataStructureViaCSharp.SingleLinkedList
 			return values;
 		}
 
-		private void Init(IEnumerable<int> values)
+		private void Init(IEnumerable<TData> values)
 		{
-			Head = new LinkedListHeadNode();
-			LinkedListNode node = Head;
+			Head = new LinkedListHeadNode<TData>();
+			LinkedListNode<TData> node = Head;
 			foreach (var value in values)
 			{
 				AddNode(value, node);
@@ -152,7 +152,7 @@ namespace DataStructureViaCSharp.SingleLinkedList
 			}
 		}
 
-		private LinkedListNode FindNode(int index)
+		private LinkedListNode<TData> FindNode(int index)
 		{
 			if (Head == null || Head.ListLength == 0)
 				return null;
@@ -163,9 +163,9 @@ namespace DataStructureViaCSharp.SingleLinkedList
 			return _indexNodeDictionary[index];
 		}
 
-		private void AddNode(int data, LinkedListNode previousNode)
+		private void AddNode(TData data, LinkedListNode<TData> previousNode)
 		{
-			previousNode.Next = new LinkedListNode { Data = data };
+			previousNode.Next = new LinkedListNode<TData> { Data = data };
 			var newNode = previousNode.Next;
 			newNode.Index = ++Head.ListLength;
 			_indexNodeDictionary[newNode.Index] = newNode;

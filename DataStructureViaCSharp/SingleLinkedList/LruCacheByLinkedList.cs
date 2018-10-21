@@ -8,7 +8,7 @@ namespace DataStructureViaCSharp.SingleLinkedList
 {
 	public class LruCacheByLinkedList
 	{
-		private readonly SingleLinkedList _linkedList = new SingleLinkedList();
+		private readonly SingleLinkedList<int> _linkedList = new SingleLinkedList<int>();
 
 		private readonly int _maxCacheCount;
 
@@ -28,7 +28,8 @@ namespace DataStructureViaCSharp.SingleLinkedList
 
 		public int? GetByIndex(int index)
 		{
-			return _linkedList.FindValueByIndex(index);
+			var node = _linkedList.FindNodeByIndex(index);
+			return node?.Data;
 		}
 
 		public int? GetByValue(int value)

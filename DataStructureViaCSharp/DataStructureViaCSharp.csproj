@@ -59,6 +59,7 @@
     <Compile Include="SingleLinkedList\Insert.cs" />
     <Compile Include="SingleLinkedList\LinkedListNode.cs" />
     <Compile Include="SingleLinkedList\LruCacheByLinkedList.cs" />
+    <Compile Include="SingleLinkedList\PalindromeValidator.cs" />
     <Compile Include="SingleLinkedList\SingleLinkedList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

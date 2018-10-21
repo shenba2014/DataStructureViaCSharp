@@ -8,7 +8,7 @@ namespace DataStructureViaCSharp.Common
 
 		int Length { get; }
 
-		LinkedListNode<TData> FindNodeByIndex(int index);
+		TData FindValueByIndex(int index);
 
 		bool DeleteByValue(TData value);
 
@@ -21,26 +21,5 @@ namespace DataStructureViaCSharp.Common
 		void DeleteByIndex(int index);
 
 		TData[] ToArray();
-	}
-
-	public interface ILinkedList
-	{
-		void InsertToHead(int value);
-
-		int Length { get; }
-
-		int? FindValueByIndex(int index);
-
-		bool DeleteByValue(int value);
-
-		void Insert(int index, int value);
-
-		void Append(int value);
-
-		void Clear();
-
-		void DeleteByIndex(int index);
-
-		int[] ToArray();
 	}
 }
