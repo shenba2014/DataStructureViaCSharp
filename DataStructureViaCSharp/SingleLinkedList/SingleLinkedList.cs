@@ -141,6 +141,21 @@ namespace DataStructureViaCSharp.SingleLinkedList
 			return values;
 		}
 
+		public void Reverse()
+		{
+			LinkedListNode<TData> node = Head.Next;
+			LinkedListNode<TData> previousNode = null;
+			while (node != null)
+			{
+				var next = node.Next;
+				node.Next = previousNode;
+				previousNode = node;
+				node = next;
+			}
+
+			Head = new LinkedListHeadNode<TData> {Next = previousNode, ListLength = Head.ListLength};
+		}
+
 		private void Init(IEnumerable<TData> values)
 		{
 			Head = new LinkedListHeadNode<TData>();

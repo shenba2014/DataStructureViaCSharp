@@ -82,6 +82,18 @@ namespace DataStructureViaCSharp.Tests.SingleLinkedList
 			Assert.Null(_linkedList.Head.Next);
 		}
 
+		[Fact]
+		public void ShouldReverseLinkedList()
+		{
+			_linkedList.Reverse();
+			var reversedArray = _linkedList.ToArray();
+			var length = _values.Length;
+			for (var i = 0; i < length; i++)
+			{
+				Assert.Equal(reversedArray[i], _values[length - i - 1]);
+			}
+		}
+
 		public void Dispose()
 		{
 			_linkedList.Clear();

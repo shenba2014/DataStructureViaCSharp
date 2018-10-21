@@ -21,6 +21,8 @@ namespace DataStructureViaCSharp.Common
 		void DeleteByIndex(int index);
 
 		TData[] ToArray();
+
+		void Reverse();
 	}
 
 	public interface ILinkedList
