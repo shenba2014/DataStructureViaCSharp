@@ -29,10 +29,20 @@ namespace DataStructureViaCSharp.Tests.SingleLinkedList
 		}
 
 		[Fact]
-		public void ShouldFindNode()
+		public void ShouldFindNodeByIndex()
 		{
-			var value = _linkedList.FindNodeByIndex(2).Data;
-			Assert.Equal(2, value);
+			var node = _linkedList.FindNodeByIndex(2);
+			Assert.Equal(2, node.Data);
+			Assert.Equal(3, node.Next.Data);
+		}
+
+		[Fact]
+		public void ShouldFindNodeByValue()
+		{
+			_linkedList = new SingleLinkedList<int>(new[] {3, 5, 7, 8});
+			var node = _linkedList.FindNodeByValue(7);
+			Assert.Equal(7, node.Data);
+			Assert.Equal(8, node.Next.Data);
 		}
 
 		[Fact]
@@ -60,7 +70,7 @@ namespace DataStructureViaCSharp.Tests.SingleLinkedList
 		public void ShouldDeleteNode()
 		{
 			var index = 2;
-			_linkedList.DeleteByIndex(index);
+			_linkedList.DeleteNodeByIndex(index);
 			var value = _linkedList.FindNodeByIndex(index).Data;
 			Assert.Equal(3, value);
 			Assert.Equal(9, _linkedList.Length);
@@ -91,6 +101,20 @@ namespace DataStructureViaCSharp.Tests.SingleLinkedList
 			for (var i = 0; i < length; i++)
 			{
 				Assert.Equal(reversedArray[i], _values[length - i - 1]);
+			}
+		}
+
+		[Fact]
+		public void CouldMergeTwoLinkedList()
+		{
+			var linkedList1 = new SingleLinkedList<int>(new[]{1, 2, 4});
+			var linkedList2 = new SingleLinkedList<int>(new[]{1, 3, 4});
+			var mergedLinkedList = LinkedListMerger.Merge(linkedList1, linkedList2);
+
+			var expectedValues = new[] {1, 1, 2, 3, 4, 4};
+			for (int i = 0; i < expectedValues.Length; i++)
+			{
+				Assert.Equal(expectedValues[i], mergedLinkedList.FindNodeByIndex(i + 1).Data);
 			}
 		}
 

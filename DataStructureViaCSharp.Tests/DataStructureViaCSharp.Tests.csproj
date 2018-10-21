@@ -59,6 +59,7 @@
     <Compile Include="Arrays\ArrayExtensionsTests.cs" />
     <Compile Include="Arrays\LruCacheByArrayTest.cs" />
     <Compile Include="CharacterString\StringFinderTests.cs" />
+    <Compile Include="SingleLinkedList\CycleLinkDetectorTest.cs" />
     <Compile Include="SingleLinkedList\LruCacheByLinkedListTest.cs" />
     <Compile Include="SingleLinkedList\PalindromeValidatorTest.cs" />
     <Compile Include="SingleLinkedList\SingleLinkedListTests.cs" />

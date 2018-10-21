@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DataStructureViaCSharp.Common;
 
 namespace DataStructureViaCSharp.SingleLinkedList
@@ -21,9 +22,9 @@ namespace DataStructureViaCSharp.SingleLinkedList
 			Init(values);
 		}
 
-		public void InsertToHead(TData value)
+		public LinkedListNode<TData> InsertToHead(TData value)
 		{
-			Insert(1, value);
+			return Insert(1, value);
 		}
 
 		public LinkedListNode<TData> FindNodeByIndex(int index)
@@ -31,17 +32,28 @@ namespace DataStructureViaCSharp.SingleLinkedList
 			return FindNode(index);
 		}
 
-		public bool DeleteByValue(TData value)
+		public LinkedListNode<TData> FindNodeByValue(TData value)
 		{
 			LinkedListNode<TData> node = Head;
-			while (node?.Next != null && !node.Next.Data.Equals(value))
+			while (node != null)
 			{
+				if (node.Data.Equals(value))
+				{
+					break;
+				}
 				node = node.Next;
 			}
 
-			if (node != null && node.Next.Data.Equals(value))
+			return node;
+		}
+
+		public bool DeleteNodeByValue(TData value)
+		{
+			var node = FindNodeByValue(value);
+
+			if (node != null)
 			{
-				var startIndex = node.Next.Index;
+				var startIndex = node.Index;
 				if (startIndex == Length)
 				{
 					_indexNodeDictionary.Remove(startIndex);
@@ -62,11 +74,11 @@ namespace DataStructureViaCSharp.SingleLinkedList
 			return false;
 		}
 
-		public void Insert(int index, TData data)
+		public LinkedListNode<TData> Insert(int index, TData data)
 		{
 			var node = index == 1 ? Head : FindNode(index - 1);
 			if (node == null)
-				return;
+				return null;
 
 			for (int i = Length + 1; i > index; i--)
 			{
@@ -84,12 +96,14 @@ namespace DataStructureViaCSharp.SingleLinkedList
 			_indexNodeDictionary[index] = newNode;
 
 			Head.ListLength++;
+
+			return newNode;
 		}
 
-		public void Append(TData data)
+		public LinkedListNode<TData> Append(TData data)
 		{
-			var node = FindNode(Length);
-			AddNode(data, node);
+			var lastNode = FindNode(Length) ?? Head;
+			return InsertAfter(lastNode, data);
 		}
 
 		public void Clear()
@@ -105,7 +119,7 @@ namespace DataStructureViaCSharp.SingleLinkedList
 			Head.ListLength = 0;
 		}
 
-		public void DeleteByIndex(int index)
+		public void DeleteNodeByIndex(int index)
 		{
 			var node = index == 1 ? Head : FindNode(index - 1);
 			if (node == null || node.Next == null)
@@ -162,7 +176,7 @@ namespace DataStructureViaCSharp.SingleLinkedList
 			LinkedListNode<TData> node = Head;
 			foreach (var value in values)
 			{
-				AddNode(value, node);
+				InsertAfter(node, value);
 				node = node.Next;
 			}
 		}
@@ -178,12 +192,13 @@ namespace DataStructureViaCSharp.SingleLinkedList
 			return _indexNodeDictionary[index];
 		}
 
-		private void AddNode(TData data, LinkedListNode<TData> previousNode)
+		private LinkedListNode<TData> InsertAfter(LinkedListNode<TData> previousNode, TData data)
 		{
 			previousNode.Next = new LinkedListNode<TData> { Data = data };
 			var newNode = previousNode.Next;
 			newNode.Index = ++Head.ListLength;
 			_indexNodeDictionary[newNode.Index] = newNode;
+			return newNode;
 		}
 	}
 }

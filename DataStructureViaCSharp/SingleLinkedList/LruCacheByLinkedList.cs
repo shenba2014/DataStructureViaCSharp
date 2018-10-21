@@ -34,7 +34,7 @@ namespace DataStructureViaCSharp.SingleLinkedList
 
 		public int? GetByValue(int value)
 		{
-			if (_linkedList.DeleteByValue(value))
+			if (_linkedList.DeleteNodeByValue(value))
 			{
 				_linkedList.InsertToHead(value);
 				return value;
@@ -44,7 +44,7 @@ namespace DataStructureViaCSharp.SingleLinkedList
 
 		private void RemoveLastElement()
 		{
-			_linkedList.DeleteByIndex(_linkedList.Length);
+			_linkedList.DeleteNodeByIndex(_linkedList.Length);
 		}
 	}
 }

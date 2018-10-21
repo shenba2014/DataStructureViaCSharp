@@ -1,24 +1,28 @@
-﻿using DataStructureViaCSharp.SingleLinkedList;
+﻿using System;
+using System.Collections.Generic;
+using DataStructureViaCSharp.SingleLinkedList;
 
 namespace DataStructureViaCSharp.Common
 {
 	public interface ILinkedList<TData>
 	{
-		void InsertToHead(TData value);
+		SingleLinkedList.LinkedListNode<TData> InsertToHead(TData value);
 
 		int Length { get; }
 
-		LinkedListNode<TData> FindNodeByIndex(int index);
+		SingleLinkedList.LinkedListNode<TData> FindNodeByIndex(int index);
 
-		bool DeleteByValue(TData value);
+		SingleLinkedList.LinkedListNode<TData> FindNodeByValue(TData value);
 
-		void Insert(int index, TData value);
+		bool DeleteNodeByValue(TData value);
 
-		void Append(TData value);
+		void DeleteNodeByIndex(int index);
+
+		SingleLinkedList.LinkedListNode<TData> Insert(int index, TData value);
+
+		SingleLinkedList.LinkedListNode<TData> Append(TData value);
 
 		void Clear();
-
-		void DeleteByIndex(int index);
 
 		TData[] ToArray();
 

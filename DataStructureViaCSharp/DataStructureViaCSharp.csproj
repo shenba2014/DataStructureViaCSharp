@@ -54,9 +54,11 @@
     <Compile Include="CommandLineHelper.cs" />
     <Compile Include="Common\ILinkedList.cs" />
     <Compile Include="IExample.cs" />
+    <Compile Include="SingleLinkedList\CycleLinkDetector.cs" />
     <Compile Include="SingleLinkedList\Delete.cs" />
     <Compile Include="SingleLinkedList\Find.cs" />
     <Compile Include="SingleLinkedList\Insert.cs" />
+    <Compile Include="SingleLinkedList\LinkedListMerger.cs" />
     <Compile Include="SingleLinkedList\LinkedListNode.cs" />
     <Compile Include="SingleLinkedList\LruCacheByLinkedList.cs" />
     <Compile Include="SingleLinkedList\PalindromeValidator.cs" />
