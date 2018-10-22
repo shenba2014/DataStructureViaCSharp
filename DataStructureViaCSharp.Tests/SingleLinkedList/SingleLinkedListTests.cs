@@ -105,16 +105,34 @@ namespace DataStructureViaCSharp.Tests.SingleLinkedList
 		}
 
 		[Fact]
-		public void CouldMergeTwoLinkedList()
+		public void ShouldMergeTwoLinkedListByImplement1()
 		{
 			var linkedList1 = new SingleLinkedList<int>(new[]{1, 2, 4});
 			var linkedList2 = new SingleLinkedList<int>(new[]{1, 3, 4});
-			var mergedLinkedList = LinkedListMerger.Merge(linkedList1, linkedList2);
+			var mergedLinkedNodeHead = LinkedListMerger.MergeImplement1(linkedList1.Head.Next, linkedList2.Head.Next);
 
 			var expectedValues = new[] {1, 1, 2, 3, 4, 4};
+			var node = mergedLinkedNodeHead.Next;
 			for (int i = 0; i < expectedValues.Length; i++)
 			{
-				Assert.Equal(expectedValues[i], mergedLinkedList.FindNodeByIndex(i + 1).Data);
+				Assert.Equal(expectedValues[i], node.Data);
+				node = node.Next;
+			}
+		}
+
+		[Fact]
+		public void ShouldMergeTwoLinkedListByImplement2()
+		{
+			var linkedList1 = new SingleLinkedList<int>(new[] { 1, 2, 4 });
+			var linkedList2 = new SingleLinkedList<int>(new[] { 1, 3, 4 });
+			var mergedLinkedNodeHead = LinkedListMerger.MergeImplement2(linkedList1.Head.Next, linkedList2.Head.Next);
+
+			var expectedValues = new[] { 1, 1, 2, 3, 4, 4 };
+			var node = mergedLinkedNodeHead.Next;
+			for (int i = 0; i < expectedValues.Length; i++)
+			{
+				Assert.Equal(expectedValues[i], node.Data);
+				node = node.Next;
 			}
 		}
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,39 +9,71 @@ namespace DataStructureViaCSharp.SingleLinkedList
 {
 	public class LinkedListMerger
 	{
-		public static SingleLinkedList<TComparable> Merge<TComparable>(SingleLinkedList<TComparable> source, SingleLinkedList<TComparable> target)
+		public static LinkedListNode<TComparable> MergeImplement1<TComparable>(LinkedListNode<TComparable> source, LinkedListNode<TComparable> target)
 			where TComparable : IComparable<TComparable>
 		{
-			var mergedLinkedList = new SingleLinkedList<TComparable>();
+			LinkedListNode<TComparable> mergedNode = new LinkedListNode<TComparable>();
+			LinkedListNode<TComparable> head = mergedNode;
 
-			LinkedListNode<TComparable> sourceNode = source.Head.Next;
-			LinkedListNode<TComparable> targetNode = target.Head.Next;
+			LinkedListNode<TComparable> sourceNode = source;
+			LinkedListNode<TComparable> targetNode = target;
 
 			while (sourceNode != null || targetNode != null)
 			{
 				if (targetNode == null)
 				{
-					mergedLinkedList.Append(sourceNode.Data);
+					mergedNode.Next = sourceNode;
+					mergedNode = sourceNode;
 					sourceNode = sourceNode.Next;
 				}
 				else if (sourceNode == null)
 				{
-					mergedLinkedList.Append(targetNode.Data);
+					mergedNode.Next = targetNode;
+					mergedNode = targetNode;
 					targetNode = targetNode.Next;
 				}
 				else if (sourceNode.Data.CompareTo(targetNode.Data) <= 0)
 				{
-					mergedLinkedList.Append(sourceNode.Data);
+					mergedNode.Next = sourceNode;
+					mergedNode = sourceNode;
 					sourceNode = sourceNode.Next;
 				}
 				else
 				{
-					mergedLinkedList.Append(targetNode.Data);
+					mergedNode.Next = targetNode;
+					mergedNode = targetNode;
 					targetNode = targetNode.Next;
 				}
 			}
 
-			return mergedLinkedList;
+			return head;
+		}
+
+		public static LinkedListNode<TComparable> MergeImplement2<TComparable>(LinkedListNode<TComparable> source,
+			LinkedListNode<TComparable> target) where TComparable : IComparable<TComparable>
+		{
+			LinkedListNode<TComparable> mergedNode = new LinkedListNode<TComparable>();
+			LinkedListNode<TComparable> head = mergedNode;
+
+			while (source != null && target != null)
+			{
+				if (source.Data.CompareTo(target.Data) <= 0)
+				{
+					mergedNode.Next = source;
+					source = source.Next;
+				}
+				else
+				{
+					mergedNode.Next = target;
+					target = target.Next;
+				}
+
+				mergedNode = mergedNode.Next;
+			}
+
+			mergedNode.Next = source ?? target;
+
+			return head;
 		}
 	}
 }
