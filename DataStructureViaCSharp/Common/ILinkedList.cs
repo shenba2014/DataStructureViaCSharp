@@ -14,9 +14,13 @@ namespace DataStructureViaCSharp.Common
 
 		SingleLinkedList.LinkedListNode<TData> FindNodeByValue(TData value);
 
+		SingleLinkedList.LinkedListNode<TData> FindMiddleNode();
+
 		bool DeleteNodeByValue(TData value);
 
 		void DeleteNodeByIndex(int index);
+
+		void DeleteNodeByReverseIndex(int reverseIndex);
 
 		SingleLinkedList.LinkedListNode<TData> Insert(int index, TData value);
 

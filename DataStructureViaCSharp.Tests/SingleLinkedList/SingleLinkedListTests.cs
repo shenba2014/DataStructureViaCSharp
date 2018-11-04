@@ -46,6 +46,22 @@ namespace DataStructureViaCSharp.Tests.SingleLinkedList
 		}
 
 		[Fact]
+		public void ShouldFindMiddleNodeWithEvenCount()
+		{
+			_linkedList = new SingleLinkedList<int>(new[] { 3, 5, 7, 8 });
+			var middleNode = _linkedList.FindMiddleNode();
+			Assert.Equal(5, middleNode.Data);
+		}
+
+		[Fact]
+		public void ShouldFindMiddleNodeWithOddCount()
+		{
+			_linkedList = new SingleLinkedList<int>(new[] { 3, 5, 4, 7, 8 });
+			var middleNode = _linkedList.FindMiddleNode();
+			Assert.Equal(4, middleNode.Data);
+		}
+
+		[Fact]
 		public void ShouldInsertNode()
 		{
 			var index = 3;
@@ -73,6 +89,16 @@ namespace DataStructureViaCSharp.Tests.SingleLinkedList
 			_linkedList.DeleteNodeByIndex(index);
 			var value = _linkedList.FindNodeByIndex(index).Data;
 			Assert.Equal(3, value);
+			Assert.Equal(9, _linkedList.Length);
+		}
+
+		[Fact]
+		public void ShouldDeleteNodeByReverseIndex()
+		{
+			var index = 2;
+			_linkedList.DeleteNodeByReverseIndex(index);
+			var value = _linkedList.FindNodeByIndex(9).Data;
+			Assert.Equal(10, value);
 			Assert.Equal(9, _linkedList.Length);
 		}
 

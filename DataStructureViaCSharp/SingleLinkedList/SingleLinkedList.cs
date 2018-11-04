@@ -47,6 +47,19 @@ namespace DataStructureViaCSharp.SingleLinkedList
 			return node;
 		}
 
+		public LinkedListNode<TData> FindMiddleNode()
+		{
+			LinkedListNode<TData> fast = Head;
+			LinkedListNode<TData> slow = Head;
+			while (fast?.Next != null)
+			{
+				fast = fast.Next.Next;
+				slow = slow.Next;
+			}
+
+			return slow;
+		}
+
 		public bool DeleteNodeByValue(TData value)
 		{
 			var node = FindNodeByValue(value);
@@ -140,6 +153,12 @@ namespace DataStructureViaCSharp.SingleLinkedList
 			
 			node.Next = node.Next?.Next;
 			Head.ListLength--;
+		}
+
+		public void DeleteNodeByReverseIndex(int reverseIndex)
+		{
+			var index = Length - reverseIndex + 1;
+			DeleteNodeByIndex(index);
 		}
 
 		public TData[] ToArray()
