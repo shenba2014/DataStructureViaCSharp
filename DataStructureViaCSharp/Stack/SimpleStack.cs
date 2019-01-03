@@ -17,6 +17,8 @@ namespace DataStructureViaCSharp.Stack
 			_values = new TData[capacity];
 		}
 
+		public int Count => _count;
+
 		public bool Push(TData element)
 		{
 			if (_count + 1 > _values.Length)
@@ -32,6 +34,7 @@ namespace DataStructureViaCSharp.Stack
 				return default(TData);
 
 			var value = _values[_count - 1];
+			_values[_count - 1] = default(TData);
 			_count--;
 
 			return value;
